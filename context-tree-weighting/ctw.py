@@ -52,7 +52,10 @@ class WeightedContextTree:
             for x in self.alphabet:
                 node[x] = self.buildNode(x + context)
                 ctw *= node[x]["ctw"]
-        node["ctw"] = 0.5 * node["kt"] + 0.5 * ctw
+            node["ctw"] = 0.5 * node["kt"] + 0.5 * ctw
+        else:
+            node["ctw"] = node["kt"]
+
         node["context"] = context
         return node
 
@@ -72,5 +75,6 @@ class WeightedContextTree:
 past = "10"
 seq = "1011010"
 depth = 2
-ctw = WeightedContextTree(past, seq, depth, True)
+ctw = WeightedContextTree(past, seq, depth, False)
+
 print(ctw)
